@@ -1,0 +1,27 @@
+# LaTeX intermediate files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# Temporary and editor files
+*.bak
+*.swp
+*.tmp
+*~
+.DS_Store
+Thumbs.db
+
+# Local build directories
+build/
+tmp/
