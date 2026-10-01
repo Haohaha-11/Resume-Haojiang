@@ -1,8 +1,8 @@
-\documentclass[9pt,a4paper]{extarticle}
+\documentclass[10pt,a4paper]{extarticle}
 
 % 引入中文支持及常用宏包
 \usepackage[UTF8]{ctex}
-\usepackage[left=1.2cm, right=1.2cm, top=0.8cm, bottom=1.0cm]{geometry}
+\usepackage[left=1.2cm, right=1.2cm, top=0.8cm, bottom=0.8cm]{geometry}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{hyperref}
@@ -10,8 +10,13 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 
-% ========== 紧凑行距：在保持 9pt 可读性的同时容纳五段科研经历 ==========
-\linespread{1.18}
+% ========== 紧凑行距：在保持 10pt 可读性的同时容纳四段科研经历 ==========
+\linespread{1.12}
+
+% 禁止英文单词断字（避免 CK-MIL、Struc-tAttack 这类拆分）
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\emergencystretch=2em
 
 % 电子科技大学官方横向校标中的主蓝色
 \definecolor{uestcblue}{HTML}{004098}
@@ -141,7 +146,7 @@
 \noindent
 \textbf{电子科技大学 \quad 英才实验学院（荣誉学院）} \hfill \textbf{2024.9 - 2028.6} \\
 \textbf{专业：}数理基础科学（“成电英才计划”拔尖创新人才实验班）\quad \textbf{方向：}人工智能 \\ \quad \textbf{GPA: 3.96/4.0 \quad 加权均分：91.55 \quad 专业排名：2/24 \quad CET-4: 581 \quad CET-6: 561} \\
-\textbf{核心课程：}高等微积分、高等代数与几何、大学物理、概率论与数理统计、机器学习等。
+\textbf{核心课程：}高等微积分、高等代数与几何、大学物理、概率论与数理统计、数据结构、高级程序语言设计、机器学习等。
 
 % ==================== 科研经历 ====================
 \section*{\researchicon\hspace{0.38em}科研经历}
@@ -161,13 +166,6 @@
     \item \textbf{个人贡献：}作为 PIS 工作共同第一作者，核心参与研究构思、方法设计、实验推进与论文撰写；作为 StructAttack 工作第三作者，负责方法在 SafeBench 数据集上的适配与评测实验。
 \end{itemize}
 \projectseparator
-\projectheading{Long-Context Test-Time Training\quad 长上下文测试时训练}{2026.1 - 2026.8}
-\noindent{\color{uestcblue}\textbf{SPLIT: Write to Learn, Query to Retrieve in Long-Context Test-Time Training}}\hfill\mbox{Submitted to ICLR 2027\quad\textbf{第一作者}}\par\vspace{3pt}
-\begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item 揭示长上下文测试时训练中内容归纳与稀疏检索的更新冲突，从 Where to Update 出发，提出双路径框架 SPLIT，以中层 MLP“写”路径学习可复用结构、深层 Query“读”路径增强长程检索；在 RULER、HELMET-ICL 与 LongBench 上取得显著提升。
-    \item \textbf{个人贡献：}项目负责人，设计 Where、When、How to TTT 预实验并提出核心 Idea，推动方法从后训练方案向 Train-free 验证框架调整，负责全流程实验与论文撰写。
-\end{itemize}
-\projectseparator
 \projectheading{Pathology Foundation Models \& Efficient WSI Analysis\quad 病理基础模型与高效全切片分析}{2025.12 - 至今}
 \paperentry{From Full-Bag Diagnosis to Budgeted Patch Selection: Role-Decoupled Benchmarking and Adaptation of}{Pathology Foundation Models in Whole-Slide Imaging}{Expected Submission to IEEE TMI 2027}{第一作者}
 \noindent\textbf{指导教师：}电子科技大学 \quad 数学科学学院 \quad 邓良剑教授 \qquad 香港科技大学 \quad 陈浩助理教授
@@ -175,10 +173,11 @@
     \item 从病理图像压缩出发，发现部分形态学任务无需依赖图像重建，并将其归因于病理图像的高度冗余性与基础模型（FM）的鲁棒性；基于这两项性质，研究 Selector$\times$Consumer 场景下 FM 的能力解耦，并提出适配修复方案。
 \end{itemize}
 \projectseparator
-\projectheading{Multimodal Post-Training \& Chain-of-Thought Reasoning\quad 多模态模型后训练与思维链推理}{2026.4 - 至今}
-\paperentry{Seeing Again, Seeing Differently: ReMAP for Reasoning-Time Visual Memory Beyond One-Shot Encoding}{}{Submitted to ICLR 2027}{第一作者}
+\projectheading{Multimodal Post-Training \& CoT Reasoning\quad 多模态模型后训练与思维链推理}{2026.4 - 2026.10}
+\paperentry{ReMAP: Restoring the Perceptual Cycle with Reasoning-Time Latent Visual Memory}{}{Submitted to ICLR 2027}{第一作者}
 \begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item 通过预实验量化一次性视觉编码瓶颈：随长链推理推进，初始视觉证据的因果影响持续衰减；固定特征回放虽可恢复已保留信息，却无法补回首次编码遗漏的关键证据，形成 replay ceiling。受感知循环理论启发，提出 ReMAP 推理时自适应视觉工作空间，由当前推理状态在 Continue、Global Reorientation 与 Local Replay 间调节感知范围，以全局重定向缓解局部固着、恢复场景一致性，以局部回放返回原始像素并重编码细节证据，最终由模型按需 invoke 相应的 latent memory 支持后续推理。
+    \item 针对长链推理中模型对初始视觉输入注意力衰减、视觉 grounding 减弱的问题，从记忆构建（Curation）、组织（Organization）与访问（Access）三个维度系统分析推理时视觉记忆，发现局部证据需全局上下文辅助理解、紧凑隐式表示可兼顾精度与视觉上下文开销、记忆访问收益依赖当前推理状态。
+    \item 据此提出 ReMAP，耦合问题条件化的 Global 记忆与推理状态引导的 Local 记忆，以紧凑 latent token 插入推理序列，并基于分支 rollout 的强化学习训练访问策略，决定何时调用何种记忆；在十类基准上整体领先，于 MuirBench 与 MIMIC 上分别超越此前最优 8.38 与 14.84 个百分点，同时减少 51.0–76.8\% 的视觉 token。
 \end{itemize}
 
 % ==================== 专业技能 ====================
@@ -192,7 +191,9 @@
 \section*{\awardicon\hspace{0.38em}荣誉奖项}
 \begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
     \item 电子科技大学优秀学生奖学金 \quad 一等 \hfill \textbf{2025年}
+    \item 电子科技大学优秀学生奖学金 \quad 一等 \hfill \textbf{2026年}
     \item 美国大学生数学建模竞赛（MCM/ICM） \quad Meritorious Winner（一等奖） \hfill \textbf{2026年}
+    \item 电子科技大学（讯飞杯）首届智能体创意大赛 \quad 一等奖 \hfill \textbf{2026年}
 \end{itemize}
 
 \end{document}
