@@ -174,7 +174,7 @@
 \end{itemize}
 \projectseparator
 \projectheading{Multimodal Post-Training \& CoT Reasoning\quad 多模态模型后训练与思维链推理}{2026.4 - 2026.10}
-\paperentry{ReMAP: Restoring the Perceptual Cycle with Reasoning-Time Latent Visual Memory}{{\normalfont\color{black}\textbf{指导教师：}北京大学 \quad 仉尚航}}{Submitted to ICLR 2027}{第一作者}
+\paperentry{ReMAP: Restoring the Perceptual Cycle with Reasoning-Time Latent Visual Memory}{{\normalfont\color{black}\textbf{指导教师：}北京大学 \quad 计算机学院 \quad 仉尚航助理教授}}{Submitted to ICLR 2027}{第一作者}
 \begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
     \item 针对长链推理中模型对初始视觉输入注意力衰减、视觉 grounding 减弱的问题，从记忆构建（Curation）、组织（Organization）与访问（Access）三个维度系统分析推理时视觉记忆，发现局部证据需全局上下文辅助理解、紧凑隐式表示可兼顾精度与视觉上下文开销、记忆访问收益依赖当前推理状态。
     \item 据此提出 ReMAP，耦合问题条件化的 Global 记忆与推理状态引导的 Local 记忆，以紧凑 latent token 插入推理序列，并基于分支 rollout 的强化学习训练访问策略，决定何时调用何种记忆；在十类基准上整体领先，于 MuirBench 与 MIMIC 上分别超越此前最优 8.38 与 14.84 个百分点，同时减少 51.0–76.8\% 的视觉 token。
