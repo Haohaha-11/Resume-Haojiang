@@ -97,10 +97,13 @@
 \newcommand{\projectheading}[2]{%
     \noindent\projecticon\hspace{0.28em}\textbf{#1}\hfill\textbf{#2}\par\vspace{2pt}
 }
+% 左深右浅的渐变分隔线：左端校标蓝，约 1/4 处仍较深，随后逐渐淡出至白色
+\pgfdeclarehorizontalshading{projectfade}{100bp}{%
+    color(0bp)=(uestcblue); color(25bp)=(uestcblue!80); color(65bp)=(uestcblue!25); color(100bp)=(white)}
 \newcommand{\projectseparator}{%
-    \par\vspace{3pt}%
-    {\color{uestcblue!28}\hrule height 0.35pt}%
-    \vspace{2pt}%
+    \par\vspace{2.5pt}\nointerlineskip
+    \hbox{\tikz\shade[shading=projectfade] (0,0) rectangle (\linewidth,1pt);}%
+    \nointerlineskip\vspace{1.5pt}%
 }
 
 % ---------- 科研经历条目宏：方向与时间一行，论文标题独占一行 ----------
