@@ -94,6 +94,7 @@
         \fill[black!72] (0,0.42)--(0.65,0.21)--(0,0)--(0.15,0.21)--cycle;
     }%
 }
+\newcommand{\projecttopic}[1]{\hspace{0.55em}{\mdseries\color{black!35}|}\hspace{0.55em}{\mdseries #1}}
 \newcommand{\projectheading}[2]{%
     \noindent\projecticon\hspace{0.28em}\textbf{#1}\hfill\textbf{#2}\par\vspace{2pt}
 }
@@ -154,40 +155,42 @@
 % ==================== 科研经历 ====================
 \section*{\researchicon\hspace{0.38em}科研经历}
 
-\researchentry{Computational Pathology \& Multiple Instance Learning\quad 计算病理与多示例学习}{2025.3 - 2025.8}{CKMIL: Cascaded Key-Instance Attention Multiple Instance Learning for Histopathology Whole Slide Image Analysis {\normalfont\href{https://haoceanlab.cn/pdfs/ckmil-aaai-26.pdf}{[pdf]}}{\normalfont\color{black}\hfill\mbox{Submitted to AAAI 2026\quad\textbf{第一作者}}}}
-\textbf{指导教师：}电子科技大学 \quad 数学科学学院 \quad 邓良剑教授 \qquad 香港科技大学 \quad 陈浩助理教授
+\projectheading{MLLM reasoning and post-training\projecttopic{Thinking with latent visual memory}}{2026.4 - 2026.10}
+\paperentry{ReMAP: Restoring the Perceptual Cycle with Reasoning-Time Latent Visual Memory {\normalfont\href{https://arxiv.org/abs/2610.05097}{[arXiv]}}}{{\normalfont\color{black}\textbf{指导教师：}北京大学 \quad 计算机学院 \quad 仉尚航助理教授}}{Submitted to ICLR 2027}{第一作者}
 \begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item 针对病理全切片图像（WSI）关键诊断信号稀疏、全局交互易稀释关键信息的问题，提出级联关键实例注意力框架 CKMIL，以关键实例引导高效依赖建模；在 BRACS 与 TCGA 多队列癌症分型和生存预测任务上取得领先性能。
-    \item 个人贡献：项目负责人，统筹研究进度，参与数据处理、方法构思、实验与论文撰写，主导项目全流程推进。
+    \item \textbf{发现：}推理链越长，MLLM 对初始图像的注意力越弱，grounding 随之减弱。对照分析推理时视觉记忆的构建、组织与访问，发现局部证据需全局上下文才能读懂、紧凑 latent 表示可兼顾精度与开销、访问收益取决于推理状态。
+    \item \textbf{方法与结果：}据此提出 ReMAP：问题条件化的 Global 记忆与推理状态驱动的 Local 记忆均以紧凑 latent token 插入推理序列，并以分支 rollout 强化学习训练访问策略，决定何时调用何种记忆。在全部 4 个多图基准上超越已有视觉记忆方法（MuirBench / MIMIC 超出此前最优 8.38 / 14.84 个百分点），并减少 51.0–76.8\% 的视觉 token。
 \end{itemize}
 \projectseparator
-\projectheading{LVLM Safety \& Jailbreak Attacks\quad 多模态大模型安全与越狱攻击}{2025.9 - 2025.12}
+\projectheading{MLLM safety}{2025.9 - 2025.12}
 \paperentry{Persuasion in Scene: A Multi-Agent Typographic Jailbreak Crew against Large Vision-Language Models}{{\normalfont\href{https://haoceanlab.cn/pdfs/persuasion-in-scene-cvpr-2026.pdf}{[pdf]}}}{Submitted to CVPR 2026}{共同第一作者}
 \paperentry{Models as Lego Builders: Assembling Malice from Benign Blocks via Semantic Blueprints}{{\normalfont\href{https://arxiv.org/pdf/2603.07590}{[pdf]}}}{Accepted by CVPR 2026}{第三作者}
 \begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item 围绕 LVLM 黑盒越狱安全，提出多智能体跨模态协同框架 PIS 与基于语义槽填充漏洞的单次、免优化攻击框架 StructAttack；在主流开闭源 LVLM 上取得领先攻击成功率，揭示场景排印与结构化视觉提示的安全风险。
+    \item PIS 以多智能体协同构造场景化的图文排印提示；StructAttack 发现把有害请求拆成局部无害的语义槽后，模型自身的组合推理会把恶意意图重新拼回，据此实现单次、免优化的黑盒攻击；两者攻击成功率均领先。
     \item \textbf{个人贡献：}作为 PIS 工作共同第一作者，核心参与研究构思、方法设计、实验推进与论文撰写；作为 StructAttack 工作第三作者，负责方法在 SafeBench 数据集上的适配与评测实验。
 \end{itemize}
 \projectseparator
-\projectheading{Pathology Foundation Models \& Efficient WSI Analysis\quad 病理基础模型与高效全切片分析}{2025.12 - 至今}
+\researchentry{AI for pathology\projecttopic{Multiple instance learning}}{2025.3 - 2025.8}{CKMIL: Cascaded Key-Instance Attention Multiple Instance Learning for Histopathology Whole Slide Image Analysis {\normalfont\href{https://haoceanlab.cn/pdfs/ckmil-aaai-26.pdf}{[pdf]}}{\normalfont\color{black}\hfill\mbox{Submitted to AAAI 2026\quad\textbf{第一作者}}}}
+\textbf{指导教师：}电子科技大学 \quad 数学科学学院 \quad 邓良剑教授 \qquad 香港科技大学 \quad 陈浩助理教授
+\begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
+    \item \textbf{问题与方法：}全切片图像中的诊断证据集中在少数图块，全局交互会把这些信号稀释。提出级联关键实例注意力 CKMIL，以关键实例引导高效依赖建模；在 BRACS 与 TCGA 多队列癌症分型和生存预测任务上取得领先性能。
+    \item \textbf{个人贡献：}项目负责人，统筹研究进度，参与数据处理、方法构思、实验与论文撰写，主导项目全流程推进。
+\end{itemize}
+\projectseparator
+\projectheading{AI for medicine\projecttopic{Pathology image compression}}{2025.12 - 至今}
 \paperentry{From Full-Bag Diagnosis to Budgeted Patch Selection: Role-Decoupled Benchmarking and Adaptation of}{Pathology Foundation Models in Whole-Slide Imaging}{Expected Submission to IEEE TMI 2027}{第一作者}
 \noindent\textbf{指导教师：}电子科技大学 \quad 数学科学学院 \quad 邓良剑教授 \qquad 香港科技大学 \quad 陈浩助理教授
 \begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item 从病理图像压缩出发，发现部分形态学任务无需依赖图像重建，并将其归因于病理图像的高度冗余性与基础模型（FM）的鲁棒性；基于这两项性质，研究 Selector$\times$Consumer 场景下 FM 的能力解耦，并提出适配修复方案。
+    \item \textbf{发现与方法：}全切片图像动辄十亿像素，诊断到底需要看多少？从病理图像压缩出发，发现部分形态学任务并不依赖图像重建，源于病理图像的高度冗余与基础模型（FM）的鲁棒性；据此将 FM 的角色拆分为选块（Selector）与读块（Consumer），建立角色解耦的评测基准，分析两种角色下的能力解耦并提出适配修复方案。
 \end{itemize}
 \projectseparator
-\projectheading{Multimodal Post-Training \& CoT Reasoning\quad 多模态模型后训练与思维链推理}{2026.4 - 2026.10}
-\paperentry{ReMAP: Restoring the Perceptual Cycle with Reasoning-Time Latent Visual Memory}{{\normalfont\color{black}\textbf{指导教师：}北京大学 \quad 计算机学院 \quad 仉尚航助理教授}}{Submitted to ICLR 2027}{第一作者}
-\begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item 针对长链推理中模型对初始视觉输入注意力衰减、视觉 grounding 减弱的问题，从记忆构建（Curation）、组织（Organization）与访问（Access）三个维度系统分析推理时视觉记忆，发现局部证据需全局上下文辅助理解、紧凑隐式表示可兼顾精度与视觉上下文开销、记忆访问收益依赖当前推理状态。
-    \item 据此提出 ReMAP，耦合问题条件化的 Global 记忆与推理状态引导的 Local 记忆，以紧凑 latent token 插入推理序列，并基于分支 rollout 的强化学习训练访问策略，决定何时调用何种记忆；在十类基准上整体领先，于 MuirBench 与 MIMIC 上分别超越此前最优 8.38 与 14.84 个百分点，同时减少 51.0–76.8\% 的视觉 token。
-\end{itemize}
+\noindent\textbf{近期方向：}完成 latent visual memory 项目后，加入 memory world model 与 spatial memory 项目，进一步学习世界模型与 AI Infra 知识，并持续学习和思考“智能即压缩”这一命题。
 
 % ==================== 专业技能 ====================
 \section*{\skillsicon\hspace{0.38em}专业技能}
 \begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item \textbf{编程与工具:} Python；熟练使用 PyTorch、Linux、Git、LaTeX、Codex、Claude Code；具备 Idea 验证、实验统筹与论文写作能力。
-    \item \textbf{深度学习:} 熟悉 Transformer、Mamba 架构；具备多模态大模型测试时训练、后训练及系统评测经验；数理、学术英语基础扎实。
+    \item \textbf{编程与工具:} Python、PyTorch、Linux、Git、LaTeX、Codex、Claude Code；Idea 验证、实验统筹与论文写作能力。
+    \item \textbf{深度学习:} 熟悉 Transformer、Mamba 架构；有 MLLM 测试时训练、后训练与评测经验；数理与学术英语基础扎实。
 \end{itemize}
 
 % ==================== 荣誉奖项 ====================

@@ -11,7 +11,8 @@
 \usepackage{tikz}
 
 % ========== Compact line spacing ==========
-\linespread{1.12}
+% 英文版行距略小于中文版（1.12）：拉丁字母不需要中文那样的行间留白，且英文表述更长
+\linespread{1.08}
 
 % Never hyphenate method / benchmark names (e.g. CK-MIL, Struc-tAttack)
 \hyphenation{CKMIL StructAttack ReMAP MuirBench SafeBench Selector Consumer}
@@ -72,6 +73,7 @@
         \fill[black!72] (0,0.42)--(0.65,0.21)--(0,0)--(0.15,0.21)--cycle;
     }%
 }
+\newcommand{\projecttopic}[1]{\hspace{0.55em}{\mdseries\color{black!35}|}\hspace{0.55em}{\mdseries #1}}
 \newcommand{\projectheading}[2]{%
     \noindent\projecticon\hspace{0.28em}\textbf{#1}\hfill\textbf{#2}\par\vspace{2pt}
 }
@@ -133,34 +135,36 @@
 % ==================== Research Experience ====================
 \section*{\researchicon\hspace{0.38em}Research Experience}
 
-\researchentry{Computational Pathology \& Multiple Instance Learning}{2025.3 - 2025.8}{CKMIL: Cascaded Key-Instance Attention Multiple Instance Learning for Histopathology Whole Slide Image Analysis {\normalfont\href{https://haoceanlab.cn/pdfs/ckmil-aaai-26.pdf}{[pdf]}}{\normalfont\color{black}\hfill\mbox{Submitted to AAAI 2026\quad\textbf{First Author}}}}
-\textbf{Advisors: }Prof. Liang-Jian Deng, School of Mathematical Sciences, UESTC \qquad Asst. Prof. Hao Chen, HKUST
+\projectheading{MLLM reasoning and post-training\projecttopic{Thinking with latent visual memory}}{2026.4 - 2026.10}
+\paperentry{ReMAP: Restoring the Perceptual Cycle with Reasoning-Time Latent Visual Memory {\normalfont\href{https://arxiv.org/abs/2610.05097}{[arXiv]}}}{{\normalfont\color{black}\textbf{Advisor: }Asst. Prof. Shanghang Zhang, School of Computer Science, PKU}}{Submitted to ICLR 2027}{First Author}
 \begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item Proposed CKMIL, a cascaded key-instance attention framework for whole slide images (WSIs) with sparse diagnostic signals, using key instances to guide efficient dependency modeling; achieved leading results on multi-cohort cancer subtyping and survival prediction (BRACS, TCGA).
-    \item \textbf{Contribution: }Project lead; drove data processing, method design, experiments, and paper writing.
+    \item \textbf{Finding: }Grounding fades as MLLMs reason longer. Analyzing visual memory (curation, organization, access): local evidence needs global context, compact latents balance accuracy and cost, access utility depends on reasoning state.
+    \item \textbf{Method \& results: }ReMAP couples a question-conditioned Global memory and a state-driven Local memory (both compact latent tokens) with an RL policy deciding when to invoke which. Beats prior visual-memory methods on all four multi-image benchmarks (+8.38/+14.84 on MuirBench/MIMIC) and cuts visual tokens by 51.0--76.8\%.
 \end{itemize}
 \projectseparator
-\projectheading{LVLM Safety \& Jailbreak Attacks}{2025.9 - 2025.12}
+\projectheading{MLLM safety}{2025.9 - 2025.12}
 \paperentry{Persuasion in Scene: A Multi-Agent Typographic Jailbreak Crew against Large Vision-Language Models}{{\normalfont\href{https://haoceanlab.cn/pdfs/persuasion-in-scene-cvpr-2026.pdf}{[pdf]}}}{Submitted to CVPR 2026}{Co-First Author}
 \paperentry{Models as Lego Builders: Assembling Malice from Benign Blocks via Semantic Blueprints}{{\normalfont\href{https://arxiv.org/pdf/2603.07590}{[pdf]}}}{Accepted by CVPR 2026}{Third Author}
 \begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item Proposed PIS, a multi-agent cross-modal jailbreak framework, and StructAttack, a single-shot, optimization-free attack via semantic slot-filling, both achieving leading attack success rates on open- and closed-source LVLMs.
-    \item \textbf{Contribution: }As co-first author of PIS, contributed centrally to ideation, method design, experiments, and writing; as third author of StructAttack, adapted and evaluated the method on SafeBench.
+    \item PIS builds scenario-grounded typographic prompts with cooperating agents; StructAttack shows that once a harmful query is split into locally benign semantic slots, the model's own compositional reasoning reassembles the malicious intent, enabling a single-query, optimization-free black-box attack. Both lead in attack success rate.
+    \item \textbf{Contribution: }PIS co-first author (ideation through writing); StructAttack third author (SafeBench evaluation).
 \end{itemize}
 \projectseparator
-\projectheading{Pathology Foundation Models \& Efficient WSI Analysis}{2025.12 - Present}
+\researchentry{AI for pathology\projecttopic{Multiple instance learning}}{2025.3 - 2025.8}{CKMIL: Cascaded Key-Instance Attention Multiple Instance Learning for Histopathology Whole Slide Image Analysis {\normalfont\href{https://haoceanlab.cn/pdfs/ckmil-aaai-26.pdf}{[pdf]}}{\normalfont\color{black}\hfill\mbox{Submitted to AAAI 2026\quad\textbf{First Author}}}}
+\textbf{Advisors: }Prof. Liang-Jian Deng, School of Mathematical Sciences, UESTC \qquad Asst. Prof. Hao Chen, HKUST
+\begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
+    \item \textbf{Problem \& method: }Diagnostic evidence in a whole slide image (WSI) sits in a few patches, and global interaction dilutes it. Proposed CKMIL, a cascaded key-instance attention framework in which key instances guide efficient dependency modeling; leading results on multi-cohort cancer subtyping and survival prediction (BRACS, TCGA).
+    \item \textbf{Contribution: }Project lead; drove data processing, method design, experiments, and paper writing.
+\end{itemize}
+\projectseparator
+\projectheading{AI for medicine\projecttopic{Pathology image compression}}{2025.12 - Present}
 \paperentry{From Full-Bag Diagnosis to Budgeted Patch Selection: Role-Decoupled Benchmarking and Adaptation of}{Pathology Foundation Models in Whole-Slide Imaging}{Target: IEEE TMI 2027}{First Author}
 \noindent\textbf{Advisors: }Prof. Liang-Jian Deng, School of Mathematical Sciences, UESTC \qquad Asst. Prof. Hao Chen, HKUST
 \begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item Found that some morphological tasks need no image reconstruction, due to image redundancy and foundation model (FM) robustness; studied FM capability decoupling in Selector$\times$Consumer settings and proposed adaptation fixes.
+    \item \textbf{Finding \& method: }How much of a gigapixel slide does diagnosis need? From pathology image compression, found some morphological tasks need no image reconstruction, owing to image redundancy and foundation model (FM) robustness. Split FMs into Selector and Consumer roles, built a role-decoupled benchmark, and proposed adaptations.
 \end{itemize}
 \projectseparator
-\projectheading{Multimodal Post-Training \& CoT Reasoning}{2026.4 - 2026.10}
-\paperentry{ReMAP: Restoring the Perceptual Cycle with Reasoning-Time Latent Visual Memory}{{\normalfont\color{black}\textbf{Advisor: }Asst. Prof. Shanghang Zhang, School of Computer Science, PKU}}{Submitted to ICLR 2027}{First Author}
-\begin{itemize}[leftmargin=*, nosep, itemsep=2pt]
-    \item Analyzed reasoning-time visual memory along curation, organization, and access: local evidence needs global context, compact latents balance accuracy and cost, and access utility depends on the reasoning state.
-    \item Proposed ReMAP, coupling a question-conditioned Global memory with a state-guided Local memory returned as compact latent tokens, plus an RL access policy trained via branched rollouts; leads across ten benchmark families, beats the prior best on MuirBench/MIMIC by 8.38/14.84 points, and cuts visual tokens by 51.0--76.8\%.
-\end{itemize}
+\noindent\textbf{Current direction: }After the latent visual memory project, joined the memory world model and spatial memory projects to learn world models and AI infrastructure, while continuing to reflect on ``intelligence is compression.''
 
 % ==================== Skills ====================
 \section*{\skillsicon\hspace{0.38em}Skills}
